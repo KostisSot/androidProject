@@ -18,7 +18,7 @@
             android:title="Quizes" />
         <item
             android:id="@+id/nav_phones"
-            android:icon="@drawable/baseline_add_24"
+            android:icon="@drawable/call"
             android:title="Τηλέφωνα Α' Βοηθειών" />
 
     </group>

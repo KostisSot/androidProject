@@ -18,14 +18,25 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="10dp">
 
+            <!-- Εικονίδιο αριστερά -->
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/emergency_call"
+                android:contentDescription="@string/_Πληροφοριες" />
+
+            <!-- Τηλέφωνο -->
             <TextView
                 android:id="@+id/call_emergency"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="15dp"
                 android:text="@string/_112"
                 android:textSize="30sp" />
 
+            <!-- Info κουμπί δεξιά -->
             <ImageButton
                 android:id="@+id/info_emergency"
                 android:layout_width="wrap_content"
@@ -33,7 +44,7 @@
                 android:background="@android:color/transparent"
                 android:src="@android:drawable/ic_info"
                 android:contentDescription="@string/_Πληροφοριες"
-                android:padding="8dp" />
+                android:padding="15dp" />
         </LinearLayout>
 
 
@@ -45,14 +56,25 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="10dp">
 
+            <!-- Εικονίδιο αριστερά -->
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/hospital"
+                android:contentDescription="@string/_Πληροφοριες" />
+
+            <!-- Τηλέφωνο -->
             <TextView
                 android:id="@+id/call_ambulance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="15dp"
                 android:text="@string/_166"
                 android:textSize="30sp" />
 
+            <!-- Info κουμπί δεξιά -->
             <ImageButton
                 android:id="@+id/info_ambulance"
                 android:layout_width="wrap_content"
@@ -60,7 +82,7 @@
                 android:background="@android:color/transparent"
                 android:src="@android:drawable/ic_info"
                 android:contentDescription="@string/_Πληροφοριες"
-                android:padding="8dp" />
+                android:padding="15dp" />
         </LinearLayout>
 
 
@@ -73,14 +95,25 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="10dp">
 
+            <!-- Εικονίδιο αριστερά -->
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/burning"
+                android:contentDescription="@string/_Πληροφοριες" />
+
+            <!-- Τηλέφωνο -->
             <TextView
                 android:id="@+id/call_fire_department"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="15dp"
                 android:text="@string/_199"
                 android:textSize="30sp" />
 
+            <!-- Info κουμπί δεξιά -->
             <ImageButton
                 android:id="@+id/info_fire_department"
                 android:layout_width="wrap_content"
@@ -88,7 +121,7 @@
                 android:background="@android:color/transparent"
                 android:src="@android:drawable/ic_info"
                 android:contentDescription="@string/_Πληροφοριες"
-                android:padding="8dp" />
+                android:padding="15dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -99,14 +132,25 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="10dp">
 
+            <!-- Εικονίδιο αριστερά -->
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/police_station"
+                android:contentDescription="@string/_Πληροφοριες" />
+
+            <!-- Τηλέφωνο -->
             <TextView
                 android:id="@+id/call_police"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="15dp"
                 android:text="@string/_100"
                 android:textSize="30sp" />
 
+            <!-- Info κουμπί δεξιά -->
             <ImageButton
                 android:id="@+id/info_police"
                 android:layout_width="wrap_content"
@@ -114,7 +158,7 @@
                 android:background="@android:color/transparent"
                 android:src="@android:drawable/ic_info"
                 android:contentDescription="@string/_Πληροφοριες"
-                android:padding="8dp" />
+                android:padding="15dp" />
         </LinearLayout>
 
     </LinearLayout>
