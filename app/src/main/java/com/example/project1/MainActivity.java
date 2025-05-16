@@ -30,20 +30,19 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
+
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.fab)
-                        .show();
+                NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+                navController.navigate(R.id.nav_phones);
+                binding.navView.setCheckedItem(R.id.nav_phones);
             }
         });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-        // ✅ Πρόσθεσε και το nav_emergency εδώ:
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
                 R.id.nav_gallery,
@@ -54,8 +53,44 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.nav_phones) {
+                binding.appBarMain.fab.setVisibility(View.GONE); // Κρύβει το FAB
+            } else {
+                binding.appBarMain.fab.setVisibility(View.VISIBLE); // Δείχνει το FAB
+            }
+        });
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            boolean handled = false;
+
+            if (id == R.id.nav_home) {
+                navController.popBackStack(R.id.nav_home, false);
+                navController.navigate(R.id.nav_home);
+                handled = true;
+            } else if (id == R.id.nav_gallery) {
+                navController.popBackStack(R.id.nav_gallery, false);
+                navController.navigate(R.id.nav_gallery);
+                handled = true;
+            } else if (id == R.id.nav_slideshow) {
+                navController.popBackStack(R.id.nav_slideshow, false);
+                navController.navigate(R.id.nav_slideshow);
+                handled = true;
+            } else if (id == R.id.nav_phones) {
+                navController.popBackStack(R.id.nav_phones, false);
+                navController.navigate(R.id.nav_phones);
+                handled = true;
+            }
+
+            if (handled) {
+                item.setChecked(true);
+                drawer.closeDrawers();
+            }
+
+            return handled;
+        });
     }
 
     @Override

@@ -11,15 +11,16 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_cross"
-            android:title="First Aid Directions" />
+            android:title="@string/first_aid_directions" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/question_mark_larger"
-            android:title="Quizes" />
+            android:title="@string/quizes" />
         <item
             android:id="@+id/nav_phones"
             android:icon="@drawable/call"
-            android:title="Τηλέφωνα Α' Βοηθειών" />
+            android:title="@string/phones" />
 
     </group>
+
 </menu>
