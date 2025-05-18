@@ -7,16 +7,17 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Αρχική</string>
+    <string name="menu_actions">Πρώτες Βοήθειες</string>
+    <string name="menu_quiz">Quiz</string>
     <string name="homepage_image">Homepage Image</string>
     <string name="_112">112</string>
     <string name="_166">166</string>
     <string name="_199">199</string>
     <string name="_100">100</string>
     <string name="_Πληροφοριες">Πληροφορίες</string>
-    <string name="first_aid_directions">First Aid Directions</string>
-    <string name="quizes">Quizes</string>
-    <string name="phones">Τηλέφωνα Α\' Βοηθειών</string>
+    <string name="menu_first_aid_directions">Πρώτες Βοήθειες</string>
+
+    <string name="menu_phones">Τηλέφωνα Α\' Βοηθειών</string>
+    <string name="hospital_text">🗺️Επιλέξτε την περιοχή σας και δείτε τα εφημερεύοντα νοσοκομεία.</string>
 </resources>
