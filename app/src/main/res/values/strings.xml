@@ -19,5 +19,7 @@
     <string name="menu_first_aid_directions">Πρώτες Βοήθειες</string>
 
     <string name="menu_phones">Τηλέφωνα Α\' Βοηθειών</string>
-    <string name="hospital_text">🗺️Επιλέξτε την περιοχή σας και δείτε τα εφημερεύοντα νοσοκομεία.</string>
+    <string name="hospital_text">Μάθε, Εκπαιδεύσου, Σώσε</string>
+    <string name="emergency_hospitals">Επίλεξε την περιοχή σου και δες τα εφημερεύοντα νοσοκομεία.</string>
+    <string name="epione_text">Epione — δεν είναι απλώς μια εφαρμογή.\nΕίναι η στιγμή που κάποιος αναπνέει ξανά, γιατί εσύ ήξερες τι να κάνεις.</string>
 </resources>

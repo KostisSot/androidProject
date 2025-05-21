@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         // Initialize Places API
         if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), "ΤΟ_API_KEY_ΣΟΥ");
+            Places.initialize(requireContext(), "ΤΟ_API_KEY_ΣΟΥ");//!!!!!!!!!!!!!!!!!!!!!!!
         }
         placesClient = Places.createClient(requireContext());
 
