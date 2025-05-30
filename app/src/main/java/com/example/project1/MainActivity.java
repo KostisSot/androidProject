@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
-                R.id.nav_gallery,
+                R.id.directionsFragment,
                 R.id.nav_slideshow,
                 R.id.nav_phones // <--- ΝΕΟ!
         )
@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 navController.popBackStack(R.id.nav_home, false);
                 navController.navigate(R.id.nav_home);
                 handled = true;
-            } else if (id == R.id.nav_gallery) {
-                navController.popBackStack(R.id.nav_gallery, false);
-                navController.navigate(R.id.nav_gallery);
+            } else if (id == R.id.directionsFragment) {
+                navController.popBackStack(R.id.directionsFragment, false);
+                navController.navigate(R.id.directionsFragment);
                 handled = true;
-            } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_slideshow) {
                 navController.popBackStack(R.id.nav_slideshow, false);
                 navController.navigate(R.id.nav_slideshow);
                 handled = true;
