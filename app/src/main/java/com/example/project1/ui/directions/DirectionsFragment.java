@@ -37,13 +37,14 @@ public class DirectionsFragment extends Fragment {
 
     private void setupRecyclerView() {
         topicList = new ArrayList<>();
-        topicList.add(new FirstAidTopic(1, "ΚΑΡΠΑ", R.drawable.baseline_add_24));
+        topicList.add(new FirstAidTopic(1, "Βασικές Γνώσεις", R.drawable.basic_first_aid));
         topicList.add(new FirstAidTopic(2, "Εγκαύματα", R.drawable.baseline_add_24));
         topicList.add(new FirstAidTopic(3, "Αιμορραγία", R.drawable.baseline_add_24));
 
         adapter = new TopicAdapter(topicList, topic -> {
             Bundle bundle = new Bundle();
             bundle.putInt("topicId", topic.getId());
+            bundle.putString("title",topic.getTitle());
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_directionsFragment_to_instructionsFragment, bundle);
         });

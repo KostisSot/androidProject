@@ -43,6 +43,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         holder.title.setText(topic.getTitle());
         holder.icon.setImageResource(topic.getImageResId());
         holder.itemView.setOnClickListener(v -> listener.onItemClick(topic));
+
     }
 
     @Override
@@ -53,6 +54,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     public static class TopicViewHolder extends RecyclerView.ViewHolder {
         ImageView icon;
         TextView title;
+
 
         public TopicViewHolder(@NonNull View itemView) {
             super(itemView);
