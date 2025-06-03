@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.project1.databinding.FragmentSlideshowBinding;
+import com.example.project1.databinding.FragmentQuizBinding;
 
 public class QuizFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentQuizBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         QuizViewModel quizViewModel =
                 new ViewModelProvider(this).get(QuizViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentQuizBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
