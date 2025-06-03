@@ -1,4 +1,4 @@
-package com.example.project1.ui.slideshow;
+package com.example.project1.ui.quiz;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,20 +12,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.project1.databinding.FragmentSlideshowBinding;
 
-public class SlideshowFragment extends Fragment {
+public class QuizFragment extends Fragment {
 
     private FragmentSlideshowBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        QuizViewModel quizViewModel =
+                new ViewModelProvider(this).get(QuizViewModel.class);
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        quizViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

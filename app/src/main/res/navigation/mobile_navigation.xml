@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/directionsFragment"
         android:name="com.example.project1.ui.directions.DirectionsFragment"
-        android:label="First Aid Directions"
+        android:label="Πρώτες Βοήθειες"
         tools:layout="@layout/fragment_directions">
 
         <action
@@ -33,14 +33,14 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.project1.ui.slideshow.SlideshowFragment"
-        android:label="Quizes"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.example.project1.ui.quiz.QuizFragment"
+        android:label="Quiz"
+        tools:layout="@layout/fragment_quiz" />
 
     <fragment
         android:id="@+id/nav_phones"
         android:name="com.example.project1.ui.phones.PhonesFragment"
-        android:label="Τηλέφωνα Α' Βοηθειών"
+        android:label="Τηλέφωνα Πρώτων Βοηθειών"
         tools:layout="@layout/fragment_phone_numbers" />
     <fragment
         android:id="@+id/instructionsFragment"
