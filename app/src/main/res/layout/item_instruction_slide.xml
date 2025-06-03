@@ -29,7 +29,7 @@
             android:textSize="18sp"
             android:textColor="#000"
             android:fontFamily="@font/tektur"
-            android:textAlignment="center" />
+            android:textAlignment="gravity" />
 
     </LinearLayout>
 

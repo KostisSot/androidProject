@@ -39,8 +39,8 @@ public class DirectionsFragment extends Fragment {
         topicList = new ArrayList<>();
         topicList.add(new FirstAidTopic(1, "Βασικές Γνώσεις", R.drawable.basic_first_aid));
         topicList.add(new FirstAidTopic(2, "ΚΑΡΠΑ", R.drawable.cpr_icon));
-        topicList.add(new FirstAidTopic(3, "Χρήση Αυτόματου Απινιδωτή", R.drawable.aed_icon));
-        topicList.add(new FirstAidTopic(3, "Χρήση Αυτόματου Απινιδωτή", R.drawable.aed_icon));
+        topicList.add(new FirstAidTopic(3, "Κουτί Πρώτων Βοηθειών", R.drawable.first_aid_kit_icon));
+        topicList.add(new FirstAidTopic(4, "Χρήση Αυτόματου Απινιδωτή", R.drawable.aed_icon));
 
         adapter = new TopicAdapter(topicList, topic -> {
             Bundle bundle = new Bundle();
