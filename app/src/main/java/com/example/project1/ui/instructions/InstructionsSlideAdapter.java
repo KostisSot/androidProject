@@ -1,5 +1,6 @@
 package com.example.project1.ui.instructions;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,9 @@ public class InstructionsSlideAdapter extends RecyclerView.Adapter<InstructionsS
             InstructionStep step = steps.get(position);
             holder.text.setText(step.getText());
             holder.image.setImageResource(step.getImageResId());
+
+            Log.d("Adapter", "Binding position: " + position);
+
         }
 
         @Override

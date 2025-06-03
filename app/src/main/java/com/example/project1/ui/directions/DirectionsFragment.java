@@ -38,8 +38,9 @@ public class DirectionsFragment extends Fragment {
     private void setupRecyclerView() {
         topicList = new ArrayList<>();
         topicList.add(new FirstAidTopic(1, "Βασικές Γνώσεις", R.drawable.basic_first_aid));
-        topicList.add(new FirstAidTopic(2, "Εγκαύματα", R.drawable.baseline_add_24));
-        topicList.add(new FirstAidTopic(3, "Αιμορραγία", R.drawable.baseline_add_24));
+        topicList.add(new FirstAidTopic(2, "ΚΑΡΠΑ", R.drawable.cpr_icon));
+        topicList.add(new FirstAidTopic(3, "Χρήση Αυτόματου Απινιδωτή", R.drawable.aed_icon));
+        topicList.add(new FirstAidTopic(3, "Χρήση Αυτόματου Απινιδωτή", R.drawable.aed_icon));
 
         adapter = new TopicAdapter(topicList, topic -> {
             Bundle bundle = new Bundle();
