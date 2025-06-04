@@ -153,6 +153,13 @@ public class InstructionsFragment extends Fragment {
                         "<br>6. Gel για εγκαύματα" +
                         "<br>7. EpiPen/Αδρεναλίνη για αλλεργίες αν έχει συνταγογραφηθεί από γιατρό"), R.drawable.first_aid_medicine));
 
+            }else if ("Πνιγμονή από Ξένο Σώμα".equals(title)) {
+                steps.add(new InstructionStep(Html.fromHtml("<b>Πνιγμονή από Ξένο Σώμα</b><br>" +
+                        "Η απόφραξη μπορεί να είναι μερική ή πλήρης. Αφορά ενήλικες μετά από λήψη τροφής.<br>"+
+                        "<br> -Στη μερική απόφραξη το θύμα έχει έντονη ανησυχία και βήχα." +
+                        "<br> -Στη πλήρη απόφραξη το θύμα δεν μπορεί να μιλήσει, να βήξει ή να αναπνεύσει." +
+                        "<br> -Γρήγορα χάνει τις αισθήσεις του."), R.drawable.heimlich_picture));
+
             }
 
             InstructionsSlideAdapter adapter = new InstructionsSlideAdapter(steps);
