@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1.R;
-import com.example.project1.ui.quiz.QuizAdapter;
 import com.example.project1.model.QuizQuestion;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,13 +32,14 @@ public class QuizFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.quizRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<QuizQuestion> questions = loadQuizData();
+        String category = getArguments() != null ? getArguments().getString("category", "") : "";
+        List<QuizQuestion> questions = loadQuizData(category);
         recyclerView.setAdapter(new QuizAdapter(questions));
 
         return view;
     }
 
-    private List<QuizQuestion> loadQuizData() {
+    private List<QuizQuestion> loadQuizData(String selectedCategory) {
         try {
             InputStream is = getContext().getAssets().open("quiz_data.json");
             int size = is.available();
@@ -50,10 +50,20 @@ public class QuizFragment extends Fragment {
             String json = new String(buffer, StandardCharsets.UTF_8);
             Gson gson = new Gson();
             Type listType = new TypeToken<List<QuizQuestion>>() {}.getType();
-            return gson.fromJson(json, listType);
+            List<QuizQuestion> allQuestions = gson.fromJson(json, listType);
+
+            List<QuizQuestion> filteredQuestions = new ArrayList<>();
+            for (QuizQuestion q : allQuestions) {
+                if (q.getCategory().equalsIgnoreCase(selectedCategory)) {
+                    filteredQuestions.add(q);
+                }
+            }
+            return filteredQuestions;
+
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
         }
     }
 }
+
