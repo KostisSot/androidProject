@@ -1,6 +1,6 @@
 package com.example.project1.ui.instructions;
 
-import com.example.project1.ui.instructions.InstructionsSlideAdapter;
+import com.example.project1.ui.instructions.*;
 import android.text.Html;
 import android.os.Bundle;
 import android.util.Log;

@@ -4,11 +4,13 @@ public class QuizQuestion {
     private String question;
     private boolean correctAnswer;
     private String explanation;
-    public QuizQuestion(String question, boolean correctAnswer, String explanation){
-        this.question=question;
-        this.correctAnswer=correctAnswer;
-        this.explanation=explanation;
+    private String category;
 
+    public QuizQuestion(String question, boolean correctAnswer, String explanation, String category) {
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.explanation = explanation;
+        this.category = category;
     }
 
     public String getQuestion() {
@@ -21,5 +23,9 @@ public class QuizQuestion {
 
     public String getExplanation() {
         return explanation;
+    }
+
+    public String getCategory() {
+        return category;
     }
 }

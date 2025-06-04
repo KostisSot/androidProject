@@ -60,5 +60,20 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.project1.ui.category.CategoryFragment"
+        android:label="Κατηγορίες" >
+        <action
+            android:id="@+id/action_categoryFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.project1.ui.quiz.QuizFragment"
+        android:label="Κουίζ" />
+
+
 
 </navigation>
