@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         // Initialize Places API
         if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), "ΤΟ_API_KEY_ΣΟΥ");//!!!!!!!!!!!!!!!!!!!!!!!
+            Places.initialize(requireContext(), "b13034974f7517a5c2f465fd7ea0e7cc-f3238714-ac8e7226");
         }
         placesClient = Places.createClient(requireContext());
 
@@ -62,8 +62,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
 
         // Εστίαση στην ελλαδα
-        LatLng gre = new LatLng(38.9, 22.5);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gre, 6.5f));
+        LatLng gre = new LatLng(30.9, 23.5);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gre, 5.5f));
         searchHospitalsInGreece();
     }
 
@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         );
 
         FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
-                .setQuery(" Hospitals in Greece")
+                .setQuery("Εφημερεύοντα νοσοκομεία")
                 .setLocationBias(greeceBounds)
                 .build();
 

@@ -1,5 +1,6 @@
 package com.example.project1.ui.category;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String category = categories.get(position);
         holder.categoryText.setText(category);
-        holder.itemView.setOnClickListener(v -> listener.onCategoryClick(category, v));
+        holder.itemView.setOnClickListener(v -> {
+            Log.d("CATEGORY_ADAPTER", "Clicked: " + category); // <-- ΕΔΩ
+            listener.onCategoryClick(category, v);
+        });
     }
+
 
     @Override
     public int getItemCount() {

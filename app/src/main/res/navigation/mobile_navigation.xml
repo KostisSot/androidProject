@@ -72,7 +72,14 @@
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.example.project1.ui.quiz.QuizFragment"
-        android:label="Κουίζ" />
+        android:label="Quiz">
+
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
 
 
 
