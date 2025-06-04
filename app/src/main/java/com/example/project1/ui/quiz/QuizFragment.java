@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,18 +25,30 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class QuizFragment extends Fragment {
+
+    private static final String SELECTED_CATEGORY = "Βασικές Γνώσεις";  // Μπορεί να γίνει δυναμικό στο μέλλον
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.quizRecyclerView);
+        TextView categoryTitle = view.findViewById(R.id.categoryTitle);
+        categoryTitle.setText("Κατηγορία: " + SELECTED_CATEGORY);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         List<QuizQuestion> questions = loadQuizData();
-        recyclerView.setAdapter(new QuizAdapter(questions));
+        List<QuizQuestion> filtered = new ArrayList<>();
+        for (QuizQuestion q : questions) {
+            if (q.getCategory().equalsIgnoreCase(SELECTED_CATEGORY)) {
+                filtered.add(q);
+            }
+        }
 
+        recyclerView.setAdapter(new QuizAdapter(filtered));
         return view;
     }
 
