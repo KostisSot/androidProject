@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.project1.R;
@@ -23,21 +24,26 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class QuizFragment extends Fragment {
 
-    private String selectedCategory = "ΚΑΡΠΑ"; // Default in case none passed
+    private String selectedCategory = "ΚΑΡΠΑ";
     private List<QuizQuestion> filteredQuestions;
     private int currentIndex = 0;
 
     private TextView categoryTitle, questionText, explanationText;
     private Button trueBtn, falseBtn, nextBtn, prevBtn;
 
+    private QuizViewModel quizViewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
 
         categoryTitle = view.findViewById(R.id.categoryTitle);
         questionText = view.findViewById(R.id.questionText);
@@ -47,7 +53,6 @@ public class QuizFragment extends Fragment {
         nextBtn = view.findViewById(R.id.nextBtn);
         prevBtn = view.findViewById(R.id.prevBtn);
 
-        // Get category from arguments
         if (getArguments() != null) {
             selectedCategory = getArguments().getString("category", "ΚΑΡΠΑ");
         }
@@ -72,10 +77,14 @@ public class QuizFragment extends Fragment {
                 currentIndex++;
                 displayQuestion();
             } else {
-                Toast.makeText(getContext(), "Τέλος ερωτήσεων.", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).navigate(R.id.categoryFragment);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("questions", new ArrayList<>(filteredQuestions));
+                bundle.putSerializable("answers", new HashMap<>(quizViewModel.getAllAnswers()));
+
+                Navigation.findNavController(v).navigate(R.id.resultFragment, bundle);
             }
         });
+
 
         prevBtn.setOnClickListener(v -> {
             if (currentIndex > 0) {
@@ -95,14 +104,25 @@ public class QuizFragment extends Fragment {
 
         trueBtn.setEnabled(true);
         falseBtn.setEnabled(true);
+
         trueBtn.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
         falseBtn.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
 
         prevBtn.setEnabled(currentIndex > 0);
-        nextBtn.setEnabled(true); // Ενεργό πάντα, ώστε να εμφανίζει toast
+
+        Boolean userAnswer = quizViewModel.getUserAnswer(currentIndex);
+        if (userAnswer != null) {
+            showAnswer(userAnswer);
+        }
     }
 
     private void handleAnswer(boolean userAnswer) {
+        QuizQuestion question = filteredQuestions.get(currentIndex);
+        quizViewModel.setUserAnswer(currentIndex, userAnswer, question.isCorrectAnswer());
+        showAnswer(userAnswer);
+    }
+
+    private void showAnswer(boolean userAnswer) {
         QuizQuestion question = filteredQuestions.get(currentIndex);
         boolean correct = userAnswer == question.isCorrectAnswer();
 
@@ -137,6 +157,10 @@ public class QuizFragment extends Fragment {
         }
     }
 }
+
+
+
+
 
 
 

@@ -40,14 +40,14 @@ android:padding="16dp">
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Σωστό" />
+            android:text="ΣΩΣΤΟ" />
 
         <Button
             android:id="@+id/falseBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Λάθος"
+            android:text="ΛΑΘΟΣ"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
@@ -71,14 +71,14 @@ android:padding="16dp">
             android:id="@+id/prevBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Προηγούμενο" />
+            android:text="ΠΡΟΗΓΟΥΜΕΝΟ" />
 
         <Button
             android:id="@+id/nextBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Επόμενο" />
+            android:text="ΕΠΟΜΕΝΟ" />
     </LinearLayout>
 </LinearLayout>
 </ScrollView>

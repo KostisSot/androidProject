@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 handled = true;
             } else if (id == R.id.nav_slideshow) {
                 navController.popBackStack(R.id.nav_slideshow, false);
-                navController.navigate(R.id.nav_slideshow);
+                navController.navigate(R.id.categoryFragment);
                 handled = true;
             } else if (id == R.id.nav_phones) {
                 navController.popBackStack(R.id.nav_phones, false);

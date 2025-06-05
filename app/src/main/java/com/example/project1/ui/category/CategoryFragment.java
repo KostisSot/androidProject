@@ -1,7 +1,6 @@
 package com.example.project1.ui.category;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +35,11 @@ public class CategoryFragment extends Fragment implements CategoryAdapter.OnCate
 
     @Override
     public void onCategoryClick(String category, View view) {
-        Log.d("CATEGORY", "Clicked category: " + category);
         Bundle bundle = new Bundle();
         bundle.putString("category", category);
         Navigation.findNavController(view).navigate(R.id.action_categoryFragment_to_quizFragment, bundle);
     }
 }
+
 
 

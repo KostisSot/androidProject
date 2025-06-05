@@ -3,10 +3,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:paddingTop="60dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:contentDescription="Λίστα κατηγοριών"
+        />
+
 </LinearLayout>

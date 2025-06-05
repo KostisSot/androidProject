@@ -14,6 +14,8 @@ card_view:cardCornerRadius="8dp">
     android:padding="16dp"
     android:text="Κατηγορία"
     android:textSize="18sp"
+    android:fontFamily="@font/tektur"
     android:textColor="@android:color/black" />
 </androidx.cardview.widget.CardView>
+
 
