@@ -1,6 +1,5 @@
 package com.example.project1;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Ενημέρωση του TextView με τα δεδομένα
                 String lastText = dbHelper.getLastText();
-                textViewDisplay.setText(getString(R.string.welcome) + lastText);
+                textViewDisplay.setText("Καλωσήρθες, " + lastText);
 
 
                 // Απόκρυψη των εισαγωγικών στοιχείων
@@ -113,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 navController.popBackStack(R.id.directionsFragment, false);
                 navController.navigate(R.id.directionsFragment);
                 handled = true;
-            } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_slideshow) {
                 navController.popBackStack(R.id.nav_slideshow, false);
                 navController.navigate(R.id.nav_slideshow);
                 handled = true;
