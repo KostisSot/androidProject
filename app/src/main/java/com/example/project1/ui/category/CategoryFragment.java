@@ -40,3 +40,5 @@ public class CategoryFragment extends Fragment implements CategoryAdapter.OnCate
         Navigation.findNavController(view).navigate(R.id.action_categoryFragment_to_quizFragment, bundle);
     }
 }
+
+

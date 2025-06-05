@@ -12,45 +12,48 @@ import com.example.project1.R;
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
     public interface OnCategoryClickListener {
         void onCategoryClick(String category, View view);
     }
 
-    private final List<String> categories;
-    private final OnCategoryClickListener listener;
+    private List<String> categoryList;
+    private OnCategoryClickListener listener;
 
-    public CategoryAdapter(List<String> categories, OnCategoryClickListener listener) {
-        this.categories = categories;
+    public CategoryAdapter(List<String> categoryList, OnCategoryClickListener listener) {
+        this.categoryList = categoryList;
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false);
-        return new ViewHolder(view);
+    public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_category, parent, false);
+        return new CategoryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String category = categories.get(position);
-        holder.categoryText.setText(category);
+    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
+        String category = categoryList.get(position);
+        holder.categoryName.setText(category);
         holder.itemView.setOnClickListener(v -> listener.onCategoryClick(category, v));
     }
 
     @Override
     public int getItemCount() {
-        return categories.size();
+        return categoryList.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView categoryText;
+    static class CategoryViewHolder extends RecyclerView.ViewHolder {
+        TextView categoryName;
 
-        ViewHolder(View view) {
-            super(view);
-            categoryText = view.findViewById(R.id.categoryText);
+        public CategoryViewHolder(@NonNull View itemView) {
+            super(itemView);
+            categoryName = itemView.findViewById(R.id.categoryName);
         }
     }
 }
+
+
