@@ -85,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
                 R.id.directionsFragment,
-                R.id.nav_slideshow,
-                R.id.nav_phones // <--- ΝΕΟ!
+                R.id.resultFragment,
+                R.id.nav_phones,
+                R.id.categoryFragment
         )
                 .setOpenableLayout(drawer)
                 .build();
