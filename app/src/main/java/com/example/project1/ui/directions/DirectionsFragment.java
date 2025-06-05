@@ -44,6 +44,8 @@ public class DirectionsFragment extends Fragment {
         topicList.add(new FirstAidTopic(7, "Περιποίηση Τραύματος", R.drawable.trauma_icon));
         topicList.add(new FirstAidTopic(8, "Αλλεργία/Αναφυλλακτικό ΣΟΚ", R.drawable.allergy_icon));
         topicList.add(new FirstAidTopic(9, "Έγκαυμα", R.drawable.burn_icon));
+        topicList.add(new FirstAidTopic(10, "Λιποθυμία", R.drawable.faint_icon));
+        topicList.add(new FirstAidTopic(11, "Έμφραγμα", R.drawable.heart_attack_icon));
 
         topicList.add(new FirstAidTopic(3, "Κουτί Πρώτων Βοηθειών", R.drawable.first_aid_kit_icon));
         topicList.add(new FirstAidTopic(4, "Χρήση Αυτόματου Απινιδωτή", R.drawable.aed_icon));
