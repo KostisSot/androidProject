@@ -58,17 +58,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public String getLastText() {
         SQLiteDatabase db = this.getReadableDatabase();
+        String result = "";
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_TEXT + " FROM " + TABLE_NAME +
                 " ORDER BY " + COLUMN_ID + " DESC LIMIT 1", null);
-        String lastText = "";
 
-        if (cursor.moveToFirst()) {
-            lastText = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TEXT));
+        if (cursor != null && cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TEXT));
+            cursor.close();
         }
 
-        cursor.close();
         db.close();
-        return lastText;
+        return result;
+    }
+    public void clearAll() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close();
     }
 
 

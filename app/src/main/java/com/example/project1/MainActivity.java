@@ -40,36 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
-        EditText editTextInput = findViewById(R.id.editTextInput);
-        Button buttonSave = findViewById(R.id.buttonSave);
-        TextView textViewDisplay = findViewById(R.id.textViewDisplay);
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
 
-
-// Φόρτωσε υπάρχοντα κείμενα κατά την εκκίνηση
-        textViewDisplay.setText(dbHelper.getAllTexts());
-
-        buttonSave.setOnClickListener(v -> {
-            String inputText = editTextInput.getText().toString().trim();
-
-            if (!inputText.isEmpty()) {
-                dbHelper.insertText(inputText);
-
-                // Ενημέρωση του TextView με τα δεδομένα
-                String lastText = dbHelper.getLastText();
-                textViewDisplay.setText(getString(R.string.welcome) + lastText);
-
-
-                // Απόκρυψη των εισαγωγικών στοιχείων
-                editTextInput.setVisibility(View.GONE);
-                buttonSave.setVisibility(View.GONE);
-
-                // Εμφάνιση του TextView
-                textViewDisplay.setVisibility(View.VISIBLE);
-            } else {
-                Toast.makeText(this, "Παρακαλώ εισάγετε όνομα", Toast.LENGTH_SHORT).show();
-            }
-        });
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

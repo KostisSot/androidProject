@@ -22,7 +22,7 @@
     <string name="hospital_text">Μάθε, Εφάρμοσε, Σώσε</string>
     <string name="emergency_hospitals">Επίλεξε την περιοχή σου και δες τα εφημερεύοντα νοσοκομεία.</string>
     <string name="epione_text">Epione — δεν είναι απλώς μια εφαρμογή.\nΕίναι η στιγμή που κάποιος αναπνέει ξανά, γιατί εσύ ήξερες τι να κάνεις.</string>
-    <string name="welcome">"Καλωw ήρθες, "</string>
+    <string name="welcome">"Καλώς ήρθες, "</string>
     <string name="name">Εισάγετε όνομα</string>
     <string name="saveBtn">Αποθήκευση</string>
 </resources>
