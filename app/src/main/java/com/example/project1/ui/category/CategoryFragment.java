@@ -27,7 +27,7 @@ public class CategoryFragment extends Fragment implements CategoryAdapter.OnCate
         RecyclerView recyclerView = view.findViewById(R.id.categoryRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<String> categories = Arrays.asList("ΚΑΡΠΑ", "Αιμορραγία", "Εγκαύματα");
+        List<String> categories = Arrays.asList("Βασικές Γνώσεις", "ΚΑΡΠΑ", "Πνιγμονή από Ξένο Σώμα", "Αιμορραγία", "Περιποίηση Τράυματος", "Αλλεργία/Αναφυλλακτικό ΣΟΚ", "Έγκαυμα", "Λιποθυμία", "Έμφραγμα", "Εγκεφαλικό", "Δηλητηρίαση", "Επιληψία", "Κουτί Πρώτων Βοηθειών", "Χρήση Αυτόματου Απινιδωτή");
         recyclerView.setAdapter(new CategoryAdapter(categories, this));
 
         return view;
