@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="18sp"
+            android:fontFamily="@font/tektur"
             android:textColor="#000"
             android:text="Sample Topic" />
 
