@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -39,6 +40,9 @@ public class ResultFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_result, container, false);
         LinearLayout containerLayout = view.findViewById(R.id.resultsContainer);
+
+
+        Typeface customFont = ResourcesCompat.getFont(requireContext(), R.font.tektur);
 
         // Παίρνουμε τα δεδομένα από το bundle
         if (getArguments() != null) {
@@ -75,6 +79,7 @@ public class ResultFragment extends Fragment {
             questionText.setText("Ερώτηση " + (i + 1) + ": " + question.getQuestion());
             questionText.setTextSize(16f);
             questionText.setTextColor(Color.BLACK);
+            questionText.setTypeface(customFont);
 
             TextView userAnswerText = new TextView(requireContext());
             if (userAnswer != null) {
@@ -85,15 +90,18 @@ public class ResultFragment extends Fragment {
                 userAnswerText.setTypeface(null, Typeface.BOLD);
                 userAnswerText.setTextColor(Color.DKGRAY);
             }
+            userAnswerText.setTypeface(customFont);
 
             TextView correctAnswerText = new TextView(requireContext());
             correctAnswerText.setText("Σωστή απάντηση: " + (question.isCorrectAnswer() ? "Σωστό" : "Λάθος"));
             correctAnswerText.setTextColor(Color.DKGRAY);
+            correctAnswerText.setTypeface(customFont);
 
             TextView explanationText = new TextView(requireContext());
             explanationText.setText("Εξήγηση: " + question.getExplanation());
             explanationText.setTextSize(14f);
             explanationText.setTextColor(Color.parseColor("#555555"));
+            explanationText.setTypeface(customFont);
 
             cardContent.addView(questionText);
             cardContent.addView(userAnswerText);
@@ -109,24 +117,22 @@ public class ResultFragment extends Fragment {
         scoreText.setText("\nΣκορ: " + score + " / " + questions.size());
         scoreText.setTextSize(20f);
         scoreText.setTextColor(Color.BLACK);
-        scoreText.setTypeface(null, Typeface.BOLD);
+        scoreText.setTypeface(customFont, Typeface.BOLD);
         scoreText.setPadding(0, 32, 0, 16);
         scoreText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
         containerLayout.addView(scoreText);
 
-        // Κουμπί επιστροφής στις κατηγορίες
+        // Κουμπί επιστροφής
         Button backButton = new Button(requireContext());
         backButton.setText("ΕΠΙΣΤΡΟΦΗ ΣΤΙΣ ΚΑΤΗΓΟΡΙΕΣ");
         backButton.setTextColor(Color.WHITE);
+        backButton.setTypeface(customFont);
 
-        // Δημιουργία background με στρογγυλεμένες γωνίες
         GradientDrawable drawable = new GradientDrawable();
-        drawable.setColor(Color.parseColor("#8C0306")); // Χρώμα φόντου
+        drawable.setColor(Color.parseColor("#8C0306"));
         drawable.setCornerRadius(10);
         backButton.setBackground(drawable);
         backButton.setPadding(48, 24, 48, 24);
-
 
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -142,7 +148,6 @@ public class ResultFragment extends Fragment {
         );
 
         containerLayout.addView(backButton);
-
 
         return view;
     }

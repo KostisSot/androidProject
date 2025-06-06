@@ -1,15 +1,16 @@
 package com.example.project1.ui.quiz;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -37,11 +38,15 @@ public class QuizFragment extends Fragment {
     private Button trueBtn, falseBtn, nextBtn, prevBtn;
 
     private QuizViewModel quizViewModel;
+    private Typeface customFont;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        // Φόρτωση της γραμματοσειράς από το res/font
+        customFont = ResourcesCompat.getFont(requireContext(), R.font.tektur);
 
         quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
 
@@ -52,6 +57,9 @@ public class QuizFragment extends Fragment {
         falseBtn = view.findViewById(R.id.falseBtn);
         nextBtn = view.findViewById(R.id.nextBtn);
         prevBtn = view.findViewById(R.id.prevBtn);
+
+        // Εφαρμογή γραμματοσειράς
+        applyFont();
 
         if (getArguments() != null) {
             selectedCategory = getArguments().getString("category", "ΚΑΡΠΑ");
@@ -80,11 +88,9 @@ public class QuizFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("questions", new ArrayList<>(filteredQuestions));
                 bundle.putSerializable("answers", new HashMap<>(quizViewModel.getAllAnswers()));
-
                 Navigation.findNavController(v).navigate(R.id.resultFragment, bundle);
             }
         });
-
 
         prevBtn.setOnClickListener(v -> {
             if (currentIndex > 0) {
@@ -94,6 +100,18 @@ public class QuizFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void applyFont() {
+        if (customFont != null) {
+            categoryTitle.setTypeface(customFont);
+            questionText.setTypeface(customFont);
+            explanationText.setTypeface(customFont);
+            trueBtn.setTypeface(customFont);
+            falseBtn.setTypeface(customFont);
+            nextBtn.setTypeface(customFont);
+            prevBtn.setTypeface(customFont);
+        }
     }
 
     private void displayQuestion() {
@@ -157,6 +175,7 @@ public class QuizFragment extends Fragment {
         }
     }
 }
+
 
 
 
