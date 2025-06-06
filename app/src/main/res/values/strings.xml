@@ -25,4 +25,15 @@
     <string name="welcome">"Καλώς ήρθες, "</string>
     <string name="name">Εισάγετε όνομα</string>
     <string name="saveBtn">Αποθήκευση</string>
+    <string name="welcome2">Καλως ήρθες,</string>
+    <string name="category">Κατηγορία:</string>
+    <string name="question">Ερώτηση</string>
+    <string name="correct">ΣΩΣΤΟ</string>
+    <string name="notCorrect">ΛΑΘΟΣ</string>
+    <string name="explanation">Εξήγηση</string>
+    <string name="prev">ΠΡΟΗΓΟΥΜΕΝΟ</string>
+    <string name="next">ΕΠΟΜΕΝΟ</string>
+    <string name="username">Username</string>
+    <string name="other_user">Αλλαγή χρήστη</string>
+    <string name="c">Κατηγορία</string>
 </resources>

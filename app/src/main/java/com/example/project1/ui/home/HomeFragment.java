@@ -1,5 +1,6 @@
 package com.example.project1.ui.home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private DatabaseHelper dbHelper;
     private Button buttonEdit;
     private LinearLayout userInfoLayout;
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -74,7 +76,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
             if (!inputText.isEmpty()) {
                 dbHelper.insertText(inputText);
-                textViewDisplay.setText("Καλωσήρθες, "+ inputText);
+                textViewDisplay.setText(getString(R.string.welcome2)+ inputText);
                 textViewDisplay.setVisibility(View.VISIBLE);
                 editTextInput.setVisibility(View.GONE);
                 buttonSave.setVisibility(View.GONE);

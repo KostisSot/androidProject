@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Username"
+            android:text="@string/username"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -36,7 +36,7 @@
             android:id="@+id/buttonEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Αλλαγή χρήστη" />
+            android:text="@string/other_user" />
 
     </LinearLayout>
 

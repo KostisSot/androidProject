@@ -15,7 +15,8 @@ android:padding="16dp">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Κατηγορία:"
+        android:text="@string/category"
+        android:fontFamily="@font/tektur"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -23,7 +24,7 @@ android:padding="16dp">
         android:id="@+id/questionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ερώτηση"
+        android:text="@string/question"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:layout_marginBottom="16dp" />
@@ -40,14 +41,16 @@ android:padding="16dp">
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ΣΩΣΤΟ" />
+            android:fontFamily="@font/tektur"
+            android:text="@string/correct" />
 
         <Button
             android:id="@+id/falseBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ΛΑΘΟΣ"
+            android:fontFamily="@font/tektur"
+            android:text="@string/notCorrect"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
@@ -55,7 +58,7 @@ android:padding="16dp">
         android:id="@+id/explanationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Εξήγηση"
+        android:text="@string/explanation"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
@@ -70,15 +73,17 @@ android:padding="16dp">
         <Button
             android:id="@+id/prevBtn"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/tektur"
             android:layout_height="wrap_content"
-            android:text="ΠΡΟΗΓΟΥΜΕΝΟ" />
+            android:text="@string/prev" />
 
         <Button
             android:id="@+id/nextBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/tektur"
             android:layout_marginStart="16dp"
-            android:text="ΕΠΟΜΕΝΟ" />
+            android:text="@string/next" />
     </LinearLayout>
 </LinearLayout>
 </ScrollView>
