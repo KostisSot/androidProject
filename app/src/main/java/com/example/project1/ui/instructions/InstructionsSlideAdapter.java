@@ -14,6 +14,11 @@ import com.example.project1.R;
 
 import java.util.List;
 
+/**
+ * Is a RecyclerView.Adapter that displays a list of instructional steps, each containing a text description and an image, within a slide-based layout.
+ * It binds data from InstructionStep objects to the corresponding views in item_instruction_slide.
+ * @author kostissotiriou
+ */
 public class InstructionsSlideAdapter extends RecyclerView.Adapter<InstructionsSlideAdapter.ViewHolder> {
 
         private final List<InstructionStep> steps;

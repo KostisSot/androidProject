@@ -28,6 +28,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Displays true/false quiz questions filtered by category, tracks user answers, and navigates to a results screen upon completion.
+ * It loads data from a JSON file and uses a custom font for consistent UI styling.
+ * @author dimitrasa
+ */
 public class QuizFragment extends Fragment {
 
     private String selectedCategory = "ΚΑΡΠΑ";
@@ -45,7 +50,7 @@ public class QuizFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
 
-        // Φόρτωση της γραμματοσειράς από το res/font
+
         customFont = ResourcesCompat.getFont(requireContext(), R.font.tektur);
 
         quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
@@ -58,7 +63,7 @@ public class QuizFragment extends Fragment {
         nextBtn = view.findViewById(R.id.nextBtn);
         prevBtn = view.findViewById(R.id.prevBtn);
 
-        // Εφαρμογή γραμματοσειράς
+
         applyFont();
 
         if (getArguments() != null) {

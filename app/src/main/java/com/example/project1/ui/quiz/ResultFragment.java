@@ -1,5 +1,6 @@
 package com.example.project1.ui.quiz;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
@@ -27,11 +28,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Dynamically generates a detailed quiz summary using cards, displaying each question, the user's answer, the correct answer, and an explanation, along with the total score and a return button to the category selection.
+ * @author dimitrasa
+ */
 public class ResultFragment extends Fragment {
 
     private List<QuizQuestion> questions = new ArrayList<>();
     private Map<Integer, Boolean> userAnswers = new HashMap<>();
 
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

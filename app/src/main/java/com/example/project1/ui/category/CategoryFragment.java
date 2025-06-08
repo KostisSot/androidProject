@@ -17,6 +17,11 @@ import com.example.project1.R;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Displays a list of first aid categories using a RecyclerView.
+ * When a category is selected, it navigates to the corresponding quiz screen, passing the selected category as an argument.
+ * @author dimitrasa
+ */
 public class CategoryFragment extends Fragment implements CategoryAdapter.OnCategoryClickListener {
 
     @Nullable

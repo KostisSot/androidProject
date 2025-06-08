@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+/**
+ * Handles a simple SQLite database in an Android app.
+ * It allows inserting, retrieving, and clearing text entries stored in a table.
+ * @author psarrasd
+ */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "mydb.db";

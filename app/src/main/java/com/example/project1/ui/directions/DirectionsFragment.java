@@ -17,7 +17,10 @@ import com.example.project1.model.FirstAidTopic;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+*Main frame of the directions frgament. Here are presented all the topic cards for first aid instructions.
+ @author kostissotiriou
+ */
 public class DirectionsFragment extends Fragment {
 
     private FragmentDirectionsBinding binding;

@@ -5,14 +5,19 @@ import androidx.lifecycle.ViewModel;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Stores user answers and dynamically tracks the quiz score based on correctness.
+ * It ensures score accuracy even when answers are updated.
+ * @author dimitrasa
+ */
 public class QuizViewModel extends ViewModel {
 
     private final Map<Integer, Boolean> userAnswers = new HashMap<>();
     private int score = 0;
 
-    // Αποθήκευση απάντησης με έλεγχο αν είναι σωστή
+
     public void setUserAnswer(int index, boolean answer, boolean correctAnswer) {
-        // Αν αλλάξει απάντηση, αφαιρούμε το προηγούμενο σκορ
+
         if (userAnswers.containsKey(index)) {
             boolean wasCorrect = userAnswers.get(index) == correctAnswer;
             if (wasCorrect) score--;

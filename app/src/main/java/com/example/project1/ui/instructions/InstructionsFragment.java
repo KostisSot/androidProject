@@ -19,10 +19,15 @@ import com.example.project1.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *Displays a sequence of instructional slides related to first aid topics, dynamically populated based on the selected topic title passed as an argument.
+ *It helps users visually follow steps with formatted text and images.
+ * @author kostissotiriou
+ */
 public class InstructionsFragment extends Fragment {
 
     public InstructionsFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -133,8 +138,7 @@ public class InstructionsFragment extends Fragment {
                         "<br>Ένα καλά εξοπλισμένο κουτί πρώτων βοηθειών μπορεί να βοηθήσει\n" +
                         "αποτελεσματικά στους απλούς τραυματισμούς ή σε καταστάσεις έκτακτης\n" +
                         "ανάγκης. Έχουμε ένα κουτί πρώτων βοηθειών στο σπίτι μας και ένα στο\n" +
-                        "αυτοκίνητό μας. Αποθηκεύουμε σε προσβάσιμο μέρος μακριά από παιδιά." +
-                        "ριά από παιδιά."), R.drawable.first_aid_kit_picture));
+                        "αυτοκίνητό μας. Αποθηκεύουμε σε προσβάσιμο μέρος μακριά από μικρά παιδιά."), R.drawable.first_aid_kit_picture));
                 steps.add(new InstructionStep(Html.fromHtml("<b>Κουτί πρώτων Βοηθειών</b><br>" +
                         "<br><b>Βασικός Εξοπλισμός:</b>" +
                         "<br>1. Γάντια" +
@@ -375,7 +379,7 @@ public class InstructionsFragment extends Fragment {
                         "<br> -Η μεταφορά πρέπει να γίνει άμεσα στο νοσοκομείο." +
                         "<br> -Ασθενείς χωρίς επικοινωνία πρέπει να βρίσκονται σε θέση ανάνηψης." +
                         "<br> -Όταν δεν έχουμε κυκλοφορία ξεκινάμε ΚΑΡΠΑ." +
-                        "<br> <b>Δεν πρέπει να δίνουμε εμφυσήσεις δεν ακουμπάμε με γυμνά\n" +
+                        "<br> <b>Δεν πρέπει να δίνουμε εμφυσήσεις και δεν ακουμπάμε με γυμνά\n" +
                         "χέρια εάν υπάρχει υποψία δηλητηρίασης με τοξικές ουσίες.</b>"), R.drawable.ambulance));
             }else if ("Επιληπτική Κρίση".equals(title)) {
                 steps.add(new InstructionStep(Html.fromHtml("<b>Επιληπτική Κρίση<br></b>" +
@@ -403,7 +407,7 @@ public class InstructionsFragment extends Fragment {
                 steps.add(new InstructionStep(Html.fromHtml("<b>Επιληπτική Κρίση</b><br>" +
                         "<br>Καλούμε 112 ή 166 στις περιπτώσεις όπου:" +
                         "<br> -Οι σπασμοί συνεχίζουν περισσότερα από 5 λεπτά." +
-                        "<br> -Το θύμα δεν ανακτά τις αισθήσεις του μετά από 10 λεπτά.." +
+                        "<br> -Το θύμα δεν ανακτά τις αισθήσεις του μετά από 10 λεπτά." +
                         "<br> -Εάν ακολουθήσει γρήγορα και άλλη επιληπτική κρίση." +
                         "<br> -Έχει τραυματιστεί." +
                         "<br> -Είναι έγκυος." +

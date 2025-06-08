@@ -42,6 +42,12 @@ import com.example.project1.DatabaseHelper;
 import com.example.project1.R;
 import android.widget.LinearLayout;
 
+/**
+ * Is the main screen of the app, displaying a personalized welcome message and a Google Map that marks emergency hospitals across Greece using the Places API.
+ * It also allows users to save and edit their name locally using a database.
+ * @author kostissotiriou, psarrasd
+ *
+ */
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentHomeBinding binding;
@@ -59,55 +65,58 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        // Βρες τα views από το layout
+
+        // Views
         EditText editTextInput = root.findViewById(R.id.editTextInput);
         Button buttonSave = root.findViewById(R.id.buttonSave);
         TextView textViewDisplay = root.findViewById(R.id.textViewDisplay);
         Button buttonEdit = root.findViewById(R.id.buttonEdit);
         LinearLayout userInfoLayout = root.findViewById(R.id.userInfoLayout);
 
-        // Βοηθός βάσης δεδομένων
+        // Database helper
         dbHelper = new DatabaseHelper(requireContext());
-
-
 
         buttonSave.setOnClickListener(v -> {
             String inputText = editTextInput.getText().toString().trim();
 
             if (!inputText.isEmpty()) {
                 dbHelper.insertText(inputText);
-                textViewDisplay.setText(getString(R.string.welcome2)+ inputText);
+                textViewDisplay.setText(getString(R.string.welcome2) + " " + inputText);
                 textViewDisplay.setVisibility(View.VISIBLE);
                 editTextInput.setVisibility(View.GONE);
                 buttonSave.setVisibility(View.GONE);
                 buttonEdit.setVisibility(View.VISIBLE);
+                userInfoLayout.setVisibility(View.VISIBLE);
             } else {
                 Toast.makeText(getContext(), "Παρακαλώ εισάγετε όνομα", Toast.LENGTH_SHORT).show();
             }
         });
+
         buttonEdit.setOnClickListener(v -> {
             String currentText = textViewDisplay.getText().toString();
-            editTextInput.setText(currentText);
+            String nameOnly = currentText.replace(getString(R.string.welcome2) + " ", ""); // Αφαιρεί το "Καλώς ήρθες "
+            editTextInput.setText(nameOnly);
 
             textViewDisplay.setVisibility(View.GONE);
             buttonEdit.setVisibility(View.GONE);
             editTextInput.setVisibility(View.VISIBLE);
             buttonSave.setVisibility(View.VISIBLE);
         });
-        String lastText = dbHelper.getLastText();
+
+        String lastText = dbHelper.getLastText(); // Αυτό πρέπει να είναι ΜΟΝΟ το όνομα
 
         if (!lastText.isEmpty()) {
-            textViewDisplay.setText(lastText);
-            userInfoLayout.setVisibility(View.VISIBLE);     // δείξε textView + κουμπί
+            textViewDisplay.setText(getString(R.string.welcome2) + " " + lastText);
+            userInfoLayout.setVisibility(View.VISIBLE);
             editTextInput.setVisibility(View.GONE);
             buttonSave.setVisibility(View.GONE);
         } else {
-            userInfoLayout.setVisibility(View.GONE);// κρύψε το textView + κουμπί
+            userInfoLayout.setVisibility(View.GONE);
             editTextInput.setVisibility(View.VISIBLE);
             buttonSave.setVisibility(View.VISIBLE);
         }
 
-        // Initialize Places API
+        //Places API
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), "b13034974f7517a5c2f465fd7ea0e7cc-f3238714-ac8e7226");
         }
@@ -128,14 +137,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Εστίαση στην ελλαδα
+
         LatLng gre = new LatLng(30.9, 23.5);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gre, 5.5f));
         searchHospitalsInGreece();
     }
 
     private void searchHospitalsInGreece() {
-        // Όρια για ολόκληρη την Ελλάδα
+        // Όρια για την Ελλάδα
         RectangularBounds greeceBounds = RectangularBounds.newInstance(
                 new LatLng(34.0, 19.0),   // Southwest corner
                 new LatLng(41.0, 29.0)    // Northeast corner
@@ -152,7 +161,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     for (AutocompletePrediction prediction : predictions) {
                         String placeId = prediction.getPlaceId();
 
-                        // Ορισμός τι πεδία θέλουμε
+
                         List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG);
                         FetchPlaceRequest fetchRequest = FetchPlaceRequest.builder(placeId, placeFields).build();
 

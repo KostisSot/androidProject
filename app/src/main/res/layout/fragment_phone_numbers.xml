@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"
+                android:fontFamily="@font/tektur"
                 android:text="@string/_112"
                 android:textSize="30sp" />
 
@@ -71,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"
+                android:fontFamily="@font/tektur"
                 android:text="@string/_166"
                 android:textSize="30sp" />
 
@@ -110,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"
+                android:fontFamily="@font/tektur"
                 android:text="@string/_199"
                 android:textSize="30sp" />
 
@@ -147,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"
+                android:fontFamily="@font/tektur"
                 android:text="@string/_100"
                 android:textSize="30sp" />
 

@@ -1,5 +1,6 @@
 package com.example.project1.ui.quiz;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,11 @@ import com.example.project1.model.QuizQuestion;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Binds quiz questions and user responses to a RecyclerView, visually indicating correct or incorrect answers with color-coded text.
+ * It's used to display a summary of results after the quiz.
+ * @author dimitrasa
+ */
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder> {
 
     private final List<QuizQuestion> questions;
@@ -44,6 +50,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ResultAdapter.ViewHolder holder, int position) {
         QuizQuestion question = questions.get(position);

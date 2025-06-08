@@ -1,13 +1,19 @@
 package com.example.project1;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.project1.ui.phones.CustomTypefaceSpan;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,6 +30,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Sets up the navigation structure and drawer layout for the Android app.
+ * It initializes navigation components, configures menu item font styling, and manages the Floating Action Button’s visibility based on the current screen.
+ * @author kostissotiriou
+ */
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -66,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.nav_phones) {
-                binding.appBarMain.fab.setVisibility(View.GONE); // Κρύβει το FAB
+                binding.appBarMain.fab.setVisibility(View.GONE);
             } else {
-                binding.appBarMain.fab.setVisibility(View.VISIBLE); // Δείχνει το FAB
+                binding.appBarMain.fab.setVisibility(View.VISIBLE);
             }
         });
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -102,11 +113,22 @@ public class MainActivity extends AppCompatActivity {
 
             return handled;
         });
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.tektur);
+        Typeface boldTypeface = Typeface.create(typeface, Typeface.BOLD);
+
+        Menu navMenu = navigationView.getMenu();
+        for (int i = 0; i < navMenu.size(); i++) {
+            MenuItem menuItem = navMenu.getItem(i);
+
+            SpannableString spanString = new SpannableString(menuItem.getTitle());
+            spanString.setSpan(new CustomTypefaceSpan("", boldTypeface), 0, spanString.length(), 0);
+            menuItem.setTitle(spanString);
+        }
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }

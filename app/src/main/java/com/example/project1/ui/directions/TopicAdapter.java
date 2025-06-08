@@ -15,6 +15,11 @@ import com.example.project1.model.FirstAidTopic;
 
 import java.util.List;
 
+/**
+ * The TopicAdapter class is a custom RecyclerView.Adapter used to display a list of first aid topics.
+ * Each item shows a title and an icon, with click handling for user interaction.
+ * @author kostissotiriou
+ */
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder> {
 
     public interface OnItemClickListener {
