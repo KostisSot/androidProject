@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         //Places API
         if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), "b13034974f7517a5c2f465fd7ea0e7cc-f3238714-ac8e7226");
+            Places.initialize(requireContext(), "AIzaSyByS_0fYwfl-4omaZ-W0P7iEjK5CYT6xm4");
         }
         placesClient = Places.createClient(requireContext());
 

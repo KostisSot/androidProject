@@ -9,8 +9,8 @@
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../../Αναπτυξη Εφαρμογών Κινητών Συσκευών/androidProject1" />
-            <option value="$PROJECT_DIR$/../../Αναπτυξη Εφαρμογών Κινητών Συσκευών/androidProject1/app" />
+            <option value="$PROJECT_DIR$/../../Αναπτυξη Εφαρμογών Κινητών Συσκευών/androidProject" />
+            <option value="$PROJECT_DIR$/../../Αναπτυξη Εφαρμογών Κινητών Συσκευών/androidProject/app" />
           </set>
         </option>
       </GradleProjectSettings>
