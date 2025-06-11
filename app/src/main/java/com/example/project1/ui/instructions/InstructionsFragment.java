@@ -254,8 +254,6 @@ public class InstructionsFragment extends Fragment {
                         "<br>4. Σε περίπτωση απώλειας αισθήσεων τον φέρουμε σε θέση ασφάλειας. Αν δεν αναπνέει ξεκινάμε ΚΑΡΠΑ." +
                         "<br><b> Όσοι εμφανίζουν αναφυλαξία πρέπει οπωσδήποτε να αναζητήσουν\n" +
                         "ιατρική βοήθεια.<b>"), R.drawable.epi_pen));
-
-
             }else if ("Έγκαυμα".equals(title)) {
                 steps.add(new InstructionStep(Html.fromHtml("<b>Έγκαυμα</b>" +
                         "<br>Τα είδη του εγκαύματος διαχωρίζονται ανάλογα με το βάθος τους: " +
