@@ -2,14 +2,21 @@ package com.example.project1.ui.home;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.project1.DatabaseHelper;
+import com.example.project1.R;
 import com.example.project1.databinding.FragmentHomeBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,67 +25,37 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AutocompletePrediction;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.RectangularBounds;
-import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
-import java.util.Arrays;
-import java.util.List;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-import com.example.project1.DatabaseHelper;
-import com.example.project1.R;
-import android.widget.LinearLayout;
-
-/**
- * Is the main screen of the app, displaying a personalized welcome message and a Google Map that marks emergency hospitals across Greece using the Places API.
- * It also allows users to save and edit their name locally using a database.
- * @author kostissotiriou, psarrasd
- *
- */
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentHomeBinding binding;
     private GoogleMap mMap;
     private PlacesClient placesClient;
-    private static final String TAG = "HomeFragment";
-    private EditText editTextInput;
-    private Button buttonSave;
-    private TextView textViewDisplay;
     private DatabaseHelper dbHelper;
-    private Button buttonEdit;
+
+    private EditText editTextInput;
+    private Button buttonSave, buttonEdit;
+    private TextView textViewDisplay;
     private LinearLayout userInfoLayout;
+
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Views
-        EditText editTextInput = root.findViewById(R.id.editTextInput);
-        Button buttonSave = root.findViewById(R.id.buttonSave);
-        TextView textViewDisplay = root.findViewById(R.id.textViewDisplay);
-        Button buttonEdit = root.findViewById(R.id.buttonEdit);
-        LinearLayout userInfoLayout = root.findViewById(R.id.userInfoLayout);
+        // Συνδέσεις views
+        editTextInput = root.findViewById(R.id.editTextInput);
+        buttonSave = root.findViewById(R.id.buttonSave);
+        textViewDisplay = root.findViewById(R.id.textViewDisplay);
+        buttonEdit = root.findViewById(R.id.buttonEdit);
+        userInfoLayout = root.findViewById(R.id.userInfoLayout);
 
-        // Database helper
         dbHelper = new DatabaseHelper(requireContext());
 
         buttonSave.setOnClickListener(v -> {
             String inputText = editTextInput.getText().toString().trim();
-
             if (!inputText.isEmpty()) {
                 dbHelper.insertText(inputText);
                 textViewDisplay.setText(getString(R.string.welcome2) + " " + inputText);
@@ -94,7 +71,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         buttonEdit.setOnClickListener(v -> {
             String currentText = textViewDisplay.getText().toString();
-            String nameOnly = currentText.replace(getString(R.string.welcome2) + " ", ""); // Αφαιρεί το "Καλώς ήρθες "
+            String nameOnly = currentText.replace(getString(R.string.welcome2) + " ", "");
             editTextInput.setText(nameOnly);
 
             textViewDisplay.setVisibility(View.GONE);
@@ -103,8 +80,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             buttonSave.setVisibility(View.VISIBLE);
         });
 
-        String lastText = dbHelper.getLastText(); // Αυτό πρέπει να είναι ΜΟΝΟ το όνομα
-
+        String lastText = dbHelper.getLastText();
         if (!lastText.isEmpty()) {
             textViewDisplay.setText(getString(R.string.welcome2) + " " + lastText);
             userInfoLayout.setVisibility(View.VISIBLE);
@@ -116,19 +92,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             buttonSave.setVisibility(View.VISIBLE);
         }
 
-        //Places API
+        // Initialize Places
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), "AIzaSyByS_0fYwfl-4omaZ-W0P7iEjK5CYT6xm4");
         }
         placesClient = Places.createClient(requireContext());
 
-        // Load map
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(com.example.project1.R.id.map);
-
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
-        }
+        // Load map dynamically into FrameLayout
+        SupportMapFragment mapFragment = new SupportMapFragment();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.map_container, mapFragment).commit();
+        mapFragment.getMapAsync(this);
 
         return root;
     }
@@ -137,53 +111,48 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
+        // Κεντράρισμα στην Ελλάδα
+        LatLng greeceCenter = new LatLng(38.5, 22.5);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(greeceCenter, 5.7f));
 
-        LatLng gre = new LatLng(30.9, 23.5);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gre, 5.5f));
-        searchHospitalsInGreece();
+        // Νοσοκομεία (30 ενδεικτικά)
+        addHospitalMarker("Γενικό Νοσοκομείο Αθηνών Ευαγγελισμός", 37.9755, 23.7461);
+        addHospitalMarker("Γενικό Νοσοκομείο Θεσσαλονίκης Ιπποκράτειο", 40.6101, 22.9597);
+        addHospitalMarker("Πανεπιστημιακό Νοσοκομείο Λάρισας", 39.6234, 22.4042);
+        addHospitalMarker("Πανεπιστημιακό Νοσοκομείο Πατρών", 38.2554, 21.7564);
+        addHospitalMarker("Γενικό Νοσοκομείο Ηρακλείου", 35.3387, 25.1442);
+        addHospitalMarker("Νοσοκομείο Αγίου Ανδρέα (Πάτρα)", 38.2426, 21.7351);
+        addHospitalMarker("Νοσοκομείο Καβάλας", 40.9390, 24.4068);
+        addHospitalMarker("Νοσοκομείο Βόλου", 39.3622, 22.9425);
+        addHospitalMarker("Νοσοκομείο Ιωαννίνων", 39.6680, 20.8535);
+        addHospitalMarker("Νοσοκομείο Ρόδου", 36.4348, 28.2176);
+        addHospitalMarker("Νοσοκομείο Χανίων", 35.5120, 24.0180);
+        addHospitalMarker("Νοσοκομείο Τρίπολης", 37.5115, 22.3749);
+        addHospitalMarker("Νοσοκομείο Καλαμάτας", 37.0380, 22.1144);
+        addHospitalMarker("Νοσοκομείο Κοζάνης", 40.3014, 21.7859);
+        addHospitalMarker("Νοσοκομείο Σπάρτης", 37.0744, 22.4302);
+        addHospitalMarker("Νοσοκομείο Ξάνθης", 41.1362, 24.8867);
+        addHospitalMarker("Νοσοκομείο Κέρκυρας", 39.6249, 19.9217);
+        addHospitalMarker("Νοσοκομείο Λαμίας", 38.9032, 22.4337);
+        addHospitalMarker("Νοσοκομείο Κατερίνης", 40.2692, 22.5026);
+        addHospitalMarker("Νοσοκομείο Πύργου", 37.6755, 21.4418);
+        addHospitalMarker("Νοσοκομείο Αλεξανδρούπολης", 40.8506, 25.8741);
+        addHospitalMarker("Νοσοκομείο Βέροιας", 40.5239, 22.2166);
+        addHospitalMarker("Νοσοκομείο Καρδίτσας", 39.3636, 21.9210);
+        addHospitalMarker("Νοσοκομείο Κιλκίς", 40.9936, 22.8784);
+        addHospitalMarker("Νοσοκομείο Λάρισας", 39.6380, 22.4189);
+        addHospitalMarker("Νοσοκομείο Μυτιλήνης", 39.1270, 26.5547);
+        addHospitalMarker("Νοσοκομείο Πτολεμαΐδας", 40.5167, 21.6750);
+        addHospitalMarker("Νοσοκομείο Σερρών", 41.0858, 23.5453);
+        addHospitalMarker("Νοσοκομείο Τρικάλων", 39.5557, 21.7694);
+        addHospitalMarker("Νοσοκομείο Χαλκίδας", 38.4633, 23.6020);
     }
 
-    private void searchHospitalsInGreece() {
-        // Όρια για την Ελλάδα
-        RectangularBounds greeceBounds = RectangularBounds.newInstance(
-                new LatLng(34.0, 19.0),   // Southwest corner
-                new LatLng(41.0, 29.0)    // Northeast corner
-        );
-
-        FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
-                .setQuery("Εφημερεύοντα νοσοκομεία")
-                .setLocationBias(greeceBounds)
-                .build();
-
-        placesClient.findAutocompletePredictions(request)
-                .addOnSuccessListener((FindAutocompletePredictionsResponse response) -> {
-                    List<AutocompletePrediction> predictions = response.getAutocompletePredictions();
-                    for (AutocompletePrediction prediction : predictions) {
-                        String placeId = prediction.getPlaceId();
-
-
-                        List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG);
-                        FetchPlaceRequest fetchRequest = FetchPlaceRequest.builder(placeId, placeFields).build();
-
-                        placesClient.fetchPlace(fetchRequest)
-                                .addOnSuccessListener(fetchResponse -> {
-                                    Place place = fetchResponse.getPlace();
-                                    LatLng latLng = place.getLatLng();
-                                    if (latLng != null) {
-                                        mMap.addMarker(new MarkerOptions()
-                                                .position(latLng)
-                                                .title(place.getName()));
-                                    }
-                                })
-                                .addOnFailureListener(e -> Log.e(TAG, "Σφάλμα στο fetchPlace: " + e.getMessage()));
-                    }
-                })
-                .addOnFailureListener(e -> Log.e(TAG, "Σφάλμα στην αναζήτηση: " + e.getMessage()));
+    private void addHospitalMarker(String name, double lat, double lng) {
+        LatLng position = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions()
+                .position(position)
+                .title(name));
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 }
