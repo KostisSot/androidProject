@@ -3,10 +3,12 @@ package com.example.project1.ui.home;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +47,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Συνδέσεις views
+        // Views
         editTextInput = root.findViewById(R.id.editTextInput);
         buttonSave = root.findViewById(R.id.buttonSave);
         textViewDisplay = root.findViewById(R.id.textViewDisplay);
@@ -73,7 +75,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             String currentText = textViewDisplay.getText().toString();
             String nameOnly = currentText.replace(getString(R.string.welcome2) + " ", "");
             editTextInput.setText(nameOnly);
-
             textViewDisplay.setVisibility(View.GONE);
             buttonEdit.setVisibility(View.GONE);
             editTextInput.setVisibility(View.VISIBLE);
@@ -92,17 +93,29 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             buttonSave.setVisibility(View.VISIBLE);
         }
 
-        // Initialize Places
+        // Init Places
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), "AIzaSyByS_0fYwfl-4omaZ-W0P7iEjK5CYT6xm4");
         }
         placesClient = Places.createClient(requireContext());
 
-        // Load map dynamically into FrameLayout
+        // Load Map
         SupportMapFragment mapFragment = new SupportMapFragment();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.map_container, mapFragment).commit();
         mapFragment.getMapAsync(this);
+
+        // Prevent ScrollView from intercepting touch events on map
+        FrameLayout mapContainer = root.findViewById(R.id.map_container);
+        mapContainer.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN ||
+                    event.getAction() == MotionEvent.ACTION_MOVE) {
+                root.getParent().requestDisallowInterceptTouchEvent(true);
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                root.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        });
 
         return root;
     }
@@ -111,11 +124,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Κεντράρισμα στην Ελλάδα
+        // Zoom στην Ελλάδα
         LatLng greeceCenter = new LatLng(38.5, 22.5);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(greeceCenter, 5.7f));
 
-        // Νοσοκομεία (30 ενδεικτικά)
+        // Προσθήκη νοσοκομείων
         addHospitalMarker("Γενικό Νοσοκομείο Αθηνών Ευαγγελισμός", 37.9755, 23.7461);
         addHospitalMarker("Γενικό Νοσοκομείο Θεσσαλονίκης Ιπποκράτειο", 40.6101, 22.9597);
         addHospitalMarker("Πανεπιστημιακό Νοσοκομείο Λάρισας", 39.6234, 22.4042);
@@ -150,9 +163,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private void addHospitalMarker(String name, double lat, double lng) {
         LatLng position = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions()
-                .position(position)
-                .title(name));
+        mMap.addMarker(new MarkerOptions().position(position).title(name));
     }
-
 }
