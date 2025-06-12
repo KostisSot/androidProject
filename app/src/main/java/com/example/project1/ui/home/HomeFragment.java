@@ -3,12 +3,10 @@ package com.example.project1.ui.home;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,17 +103,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         transaction.replace(R.id.map_container, mapFragment).commit();
         mapFragment.getMapAsync(this);
 
-        // Prevent ScrollView from intercepting touch events on map
-        FrameLayout mapContainer = root.findViewById(R.id.map_container);
-        mapContainer.setOnTouchListener((v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN ||
-                    event.getAction() == MotionEvent.ACTION_MOVE) {
-                root.getParent().requestDisallowInterceptTouchEvent(true);
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                root.getParent().requestDisallowInterceptTouchEvent(false);
-            }
-            return false;
-        });
+        // **Δεν χρειάζεται επιπλέον touch listeners εδώ γιατί το TouchableWrapper το κάνει ήδη**
 
         return root;
     }
@@ -166,3 +154,4 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions().position(position).title(name));
     }
 }
+
