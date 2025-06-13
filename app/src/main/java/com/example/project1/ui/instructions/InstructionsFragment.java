@@ -1,6 +1,5 @@
 package com.example.project1.ui.instructions;
 
-import com.example.project1.ui.instructions.*;
 import android.text.Html;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -23,6 +20,7 @@ import java.util.List;
  *Displays a sequence of instructional slides related to first aid topics, dynamically populated based on the selected topic title passed as an argument.
  *It helps users visually follow steps with formatted text and images.
  * @author kostissotiriou
+ * @noinspection ALL
  */
 public class InstructionsFragment extends Fragment {
 

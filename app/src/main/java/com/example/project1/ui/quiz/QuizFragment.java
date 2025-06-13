@@ -1,5 +1,6 @@
 package com.example.project1.ui.quiz;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import java.util.List;
  * Displays true/false quiz questions filtered by category, tracks user answers, and navigates to a results screen upon completion.
  * It loads data from a JSON file and uses a custom font for consistent UI styling.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class QuizFragment extends Fragment {
 
@@ -45,6 +47,7 @@ public class QuizFragment extends Fragment {
     private QuizViewModel quizViewModel;
     private Typeface customFont;
 
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

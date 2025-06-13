@@ -21,6 +21,7 @@ import com.example.project1.R;
 /**
  * Provides quick access to essential emergency phone numbers and displays informative dialogs when users tap on the info buttons for each service.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class  PhonesFragment extends Fragment {
 
@@ -38,36 +39,24 @@ public class  PhonesFragment extends Fragment {
         TextView callPolice = view.findViewById((R.id.call_police));
         TextView callFireDep = view.findViewById((R.id.call_fire_department));
 
-        callAmbulance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:166"));
-                startActivity(dialIntent);
-            }
+        callAmbulance.setOnClickListener(v -> {
+            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:166"));
+            startActivity(dialIntent);
         });
 
-        callEmergency.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"));
-                startActivity(dialIntent);
-            }
+        callEmergency.setOnClickListener(v -> {
+            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"));
+            startActivity(dialIntent);
         });
 
-        callPolice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:100"));
-                startActivity(dialIntent);
-            }
+        callPolice.setOnClickListener(v -> {
+            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:100"));
+            startActivity(dialIntent);
         });
 
-        callFireDep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:199"));
-                startActivity(dialIntent);
-            }
+        callFireDep.setOnClickListener(v -> {
+            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:199"));
+            startActivity(dialIntent);
         });
 
         Typeface typeface = ResourcesCompat.getFont(requireContext(), R.font.tektur);

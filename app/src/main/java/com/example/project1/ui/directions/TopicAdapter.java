@@ -1,6 +1,5 @@
 package com.example.project1.ui.directions;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +25,8 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         void onItemClick(FirstAidTopic topic);
     }
 
-    private List<FirstAidTopic> topicList;
-    private OnItemClickListener listener;
+    private final List<FirstAidTopic> topicList;
+    private final OnItemClickListener listener;
 
     public TopicAdapter(List<FirstAidTopic> topicList, OnItemClickListener listener) {
         this.topicList = topicList;

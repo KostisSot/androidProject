@@ -1,9 +1,9 @@
 package com.example.project1.model;
 
 public class FirstAidTopic {
-    private int id;
-    private String title;
-    private int imageResId;
+    private final int id;
+    private final String title;
+    private final int imageResId;
 
     public FirstAidTopic(int id, String title, int imageResId) {
         this.id = id;

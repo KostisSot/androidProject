@@ -20,16 +20,22 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_foreground" />
 
-        <TextView
-            android:id="@+id/instruction_text"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
 
-            android:textSize="18sp"
-            android:textColor="#000"
-            android:fontFamily="@font/tektur"
-            android:textAlignment="gravity" />
+            <TextView
+                android:id="@+id/instruction_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:fontFamily="@font/tektur"
+                android:textAlignment="gravity" />
+        </ScrollView>
 
     </LinearLayout>
 

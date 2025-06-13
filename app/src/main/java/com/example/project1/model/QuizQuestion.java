@@ -1,10 +1,10 @@
 package com.example.project1.model;
 
 public class QuizQuestion {
-    private String category;
-    private String question;
-    private boolean correctAnswer;
-    private String explanation;
+    private final String category;
+    private final String question;
+    private final boolean correctAnswer;
+    private final String explanation;
 
     public QuizQuestion(String question, boolean correctAnswer, String explanation, String category) {
         this.category = category;

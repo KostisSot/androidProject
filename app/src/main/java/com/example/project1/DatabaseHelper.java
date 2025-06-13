@@ -10,6 +10,7 @@ import android.database.Cursor;
  * Handles a simple SQLite database in an Android app.
  * It allows inserting, retrieving, and clearing text entries stored in a table.
  * @author psarrasd
+ * @noinspection ALL
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -46,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
-    // Επιστρέφει όλα τα κείμενα σε μορφή String (με αλλαγές γραμμής)
+
     public String getAllTexts() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);

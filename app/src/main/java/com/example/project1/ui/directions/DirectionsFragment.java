@@ -18,14 +18,13 @@ import com.example.project1.model.FirstAidTopic;
 import java.util.ArrayList;
 import java.util.List;
 /**
-*Main frame of the directions frgament. Here are presented all the topic cards for first aid instructions.
+*Main frame of the directions fragment. Here are presented all the topic cards for first aid instructions.
  @author kostissotiriou
+  * @noinspection ALL
  */
 public class DirectionsFragment extends Fragment {
 
     private FragmentDirectionsBinding binding;
-    private List<FirstAidTopic> topicList;
-    private TopicAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class DirectionsFragment extends Fragment {
     }
 
     private void setupRecyclerView() {
-        topicList = new ArrayList<>();
+        List<FirstAidTopic> topicList = new ArrayList<>();
         topicList.add(new FirstAidTopic(1, "Βασικές Γνώσεις", R.drawable.basic_first_aid));
         topicList.add(new FirstAidTopic(2, "ΚΑΡΠΑ", R.drawable.cpr_icon));
         topicList.add(new FirstAidTopic(5, "Πνιγμονή από Ξένο Σώμα", R.drawable.heimlich_icon));
@@ -55,10 +54,10 @@ public class DirectionsFragment extends Fragment {
         topicList.add(new FirstAidTopic(3, "Κουτί Πρώτων Βοηθειών", R.drawable.first_aid_kit_icon));
         topicList.add(new FirstAidTopic(4, "Χρήση Αυτόματου Απινιδωτή", R.drawable.aed_icon));
 
-        adapter = new TopicAdapter(topicList, topic -> {
+        TopicAdapter adapter = new TopicAdapter(topicList, topic -> {
             Bundle bundle = new Bundle();
             bundle.putInt("topicId", topic.getId());
-            bundle.putString("title",topic.getTitle());
+            bundle.putString("title", topic.getTitle());
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_directionsFragment_to_instructionsFragment, bundle);
         });

@@ -9,6 +9,7 @@ import java.util.Map;
  * Stores user answers and dynamically tracks the quiz score based on correctness.
  * It ensures score accuracy even when answers are updated.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class QuizViewModel extends ViewModel {
 
@@ -19,7 +20,7 @@ public class QuizViewModel extends ViewModel {
     public void setUserAnswer(int index, boolean answer, boolean correctAnswer) {
 
         if (userAnswers.containsKey(index)) {
-            boolean wasCorrect = userAnswers.get(index) == correctAnswer;
+            boolean wasCorrect = Boolean.TRUE.equals(userAnswers.get(index)) == correctAnswer;
             if (wasCorrect) score--;
         }
 

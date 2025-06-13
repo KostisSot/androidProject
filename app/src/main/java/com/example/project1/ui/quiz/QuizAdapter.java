@@ -21,6 +21,7 @@ import java.util.List;
  * Manages a list of true/false quiz questions in a RecyclerView.
  * It displays each question with two buttons for answers, highlights the correct and incorrect choices when selected, and shows an explanation after the user answers.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
     private final List<QuizQuestion> questions;

@@ -31,6 +31,7 @@ import java.util.Map;
 /**
  * Dynamically generates a detailed quiz summary using cards, displaying each question, the user's answer, the correct answer, and an explanation, along with the total score and a return button to the category selection.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class ResultFragment extends Fragment {
 
@@ -50,7 +51,6 @@ public class ResultFragment extends Fragment {
 
         Typeface customFont = ResourcesCompat.getFont(requireContext(), R.font.tektur);
 
-        // Παίρνουμε τα δεδομένα από το bundle
         if (getArguments() != null) {
             questions = (List<QuizQuestion>) getArguments().getSerializable("questions");
             userAnswers = (Map<Integer, Boolean>) getArguments().getSerializable("answers");
@@ -128,7 +128,6 @@ public class ResultFragment extends Fragment {
         scoreText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         containerLayout.addView(scoreText);
 
-        // Κουμπί επιστροφής
         Button backButton = new Button(requireContext());
         backButton.setText("ΕΠΙΣΤΡΟΦΗ ΣΤΙΣ ΚΑΤΗΓΟΡΙΕΣ");
         backButton.setTextColor(Color.WHITE);

@@ -15,6 +15,7 @@ import java.util.List;
 /**
  *Is a RecyclerView adapter that displays a list of category names and handles item click events through a custom listener interface.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
@@ -22,8 +23,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         void onCategoryClick(String category, View view);
     }
 
-    private List<String> categoryList;
-    private OnCategoryClickListener listener;
+    private final List<String> categoryList;
+    private final OnCategoryClickListener listener;
 
     public CategoryAdapter(List<String> categoryList, OnCategoryClickListener listener) {
         this.categoryList = categoryList;

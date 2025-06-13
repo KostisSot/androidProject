@@ -20,6 +20,7 @@ import java.util.Map;
  * Binds quiz questions and user responses to a RecyclerView, visually indicating correct or incorrect answers with color-coded text.
  * It's used to display a summary of results after the quiz.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder> {
 

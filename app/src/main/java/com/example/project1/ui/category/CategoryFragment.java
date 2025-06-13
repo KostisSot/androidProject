@@ -21,6 +21,7 @@ import java.util.List;
  * Displays a list of first aid categories using a RecyclerView.
  * When a category is selected, it navigates to the corresponding quiz screen, passing the selected category as an argument.
  * @author dimitrasa
+ * @noinspection ALL
  */
 public class CategoryFragment extends Fragment implements CategoryAdapter.OnCategoryClickListener {
 
@@ -32,7 +33,7 @@ public class CategoryFragment extends Fragment implements CategoryAdapter.OnCate
         RecyclerView recyclerView = view.findViewById(R.id.categoryRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<String> categories = Arrays.asList("Βασικές Γνώσεις", "ΚΑΡΠΑ", "Πνιγμονή από Ξένο Σώμα", "Αιμορραγία", "Περιποίηση Τράυματος", "Αλλεργία/Αναφυλλακτικό ΣΟΚ", "Έγκαυμα", "Λιποθυμία", "Έμφραγμα", "Εγκεφαλικό", "Δηλητηρίαση", "Επιληψία", "Κουτί Πρώτων Βοηθειών", "Χρήση Αυτόματου Απινιδωτή");
+        List<String> categories = Arrays.asList("Βασικές Γνώσεις", "ΚΑΡΠΑ", "Πνιγμονή από Ξένο Σώμα", "Αιμορραγία", "Περιποίηση Τραύματος", "Αλλεργία/Αναφυλλακτικό ΣΟΚ", "Έγκαυμα", "Λιποθυμία", "Έμφραγμα", "Εγκεφαλικό", "Δηλητηρίαση", "Επιληψία", "Κουτί Πρώτων Βοηθειών", "Χρήση Αυτόματου Απινιδωτή");
         recyclerView.setAdapter(new CategoryAdapter(categories, this));
 
         return view;

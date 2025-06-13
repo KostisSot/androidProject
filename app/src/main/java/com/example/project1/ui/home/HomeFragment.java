@@ -27,11 +27,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+/**
+ * Allows the user to enter and save their name using a local SQLite database, displays a personalized welcome message,
+ * and shows a Google Map with 30 hospital markers across Greece. The UI updates dynamically based on user input.
+ * @author kostissotiriou , psarrasd
+ * @noinspection ALL
+ */
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
-    private FragmentHomeBinding binding;
     private GoogleMap mMap;
-    private PlacesClient placesClient;
     private DatabaseHelper dbHelper;
 
     private EditText editTextInput;
@@ -42,7 +46,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        com.example.project1.databinding.FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // Συνδέσεις views
@@ -96,9 +100,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), "AIzaSyByS_0fYwfl-4omaZ-W0P7iEjK5CYT6xm4");
         }
-        placesClient = Places.createClient(requireContext());
+        PlacesClient placesClient = Places.createClient(requireContext());
 
-        // Load map dynamically into FrameLayout
+        // Load map into FrameLayout
         SupportMapFragment mapFragment = new SupportMapFragment();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.map_container, mapFragment).commit();
@@ -111,7 +115,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Κεντράρισμα στην Ελλάδα
         LatLng greeceCenter = new LatLng(38.5, 22.5);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(greeceCenter, 5.7f));
 
